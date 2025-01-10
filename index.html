@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('pexels-photo-248159.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ccc;
+        }
+        .tab {
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #007BFF;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom: 2px solid #007BFF;
+            color: #0056b3;
+        }
+        .form-container {
+            display: none;
+        }
+        .form-container.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-target="#login">Login</div>
+            <div class="tab" data-target="#signup">Sign Up</div>
+        </div>
+
+        <div class="form-container active" id="login">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">username</label>
+                    <input type="email" id="login-user-name" name="username" required>
+                </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-Enter password">Enter password</label>
+                    <input type="Enter password" id="login-Enter password" name="enter password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p class="message" id="login-success-message">Login successful!</p>
+        </div>
+
+        <div class="form-container" id="signup">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Enter password</label>
+                    <input type="enter password" id="signup-enter password" name="enter password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm password">confirm Password</label>
+                    <input type="confirm password" id="signup-confirm password" name="confirm password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <p class="message" id="signup-success-message">Sign-up successful!</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll('.tab');
+        const forms = document.querySelectorAll('.form-container');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and forms
+                tabs.forEach(t => t.classList.remove('active'));
+                forms.forEach(form => form.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding form
+                tab.classList.add('active');
+                document.querySelector(tab.dataset.target).classList.add('active');
+            });
+        });
+
+        // Login Form Submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('login-success-message').style.display = 'block';
+        });
+
+        // Signup Form Submission
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('signup-success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
